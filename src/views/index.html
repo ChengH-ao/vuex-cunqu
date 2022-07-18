@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Vuex{
+            constructor(options){
+                this.state = options.state;
+                this.mutations = options.mutations;
+            }
+            commit(key,val){
+                this.mutations[key](this.state,val)
+            }
+        }
+
+        let store = new Vuex({
+            state:{
+                userinfo:{
+                    username:'xiaoming',
+                    age:23
+                }
+            },
+            mutations:{
+                USERINFO(state,val){
+                    state.userinfo = val;
+                },
+                SET_USERINFO_API(state,vla){
+                    state.userinfo.age = val;
+                }
+            }
+        })
+
+        var userinfo = store.state.userinfo;
+        console.log(userinfo);
+        store.commit('USERINFO',{
+            username :' name is username',
+            age: 250
+        })
+
+        var info = store.state.userinfo;
+        console.log(info);
+
+        // 1.vuex 中如何取  store.state.key
+        // 2.vuex 利用store.commit('USERINFO',vla)
+        // 该方法的第一个参数指的是mutations中的方法 
+    </script>
+</body>
+</html>
